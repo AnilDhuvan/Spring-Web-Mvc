@@ -1,0 +1,15 @@
+package com.example.demo.service;
+
+import org.springframework.stereotype.Service;
+
+@Service
+public class PwdService {
+
+	public PwdService() {
+	System.out.println("service default constructor");
+	}
+	
+	
+	
+
+}

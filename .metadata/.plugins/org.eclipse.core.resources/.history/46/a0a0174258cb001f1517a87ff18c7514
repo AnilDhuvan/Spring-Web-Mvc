@@ -1,0 +1,5 @@
+package com.nilu.bindings;
+
+public class Book {
+
+}
