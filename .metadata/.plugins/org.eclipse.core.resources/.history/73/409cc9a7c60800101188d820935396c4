@@ -1,0 +1,10 @@
+spring.application.name=06_SB_MVC_Email_Sending
+
+# SMTP server settings
+spring.mail.host=smtp.gmail.com
+spring.mail.port=587
+spring.mail.username=Anilkumar
+spring.mail.password=ommz uogo dhsw tyyt
+spring.mail.properties.mail.smtp.auth=true
+spring.mail.properties.mail.smtp.starttls.enable=true
+spring.mail.properties.mail.smtp.starttls.required=true

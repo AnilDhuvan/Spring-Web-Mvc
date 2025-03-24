@@ -1,0 +1,27 @@
+package com.p1.controller;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+@RequestMapping("/api")
+public class MyController {
+
+    @GetMapping("/test")
+    public String testEndpoint() {
+        if (true) {
+            throw new IllegalArgumentException("Invalid argument passed!");
+        }
+        return "Hello, World!";
+    }
+
+    // Handle IllegalArgumentException at the controller level
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ResponseEntity<String> handleIllegalArgumentException(IllegalArgumentException ex) {
+        return new ResponseEntity<>("Error: " + ex.getMessage(), HttpStatus.BAD_REQUEST);
+    }
+}

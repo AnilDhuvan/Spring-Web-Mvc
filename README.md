@@ -1,4 +1,5 @@
 
+
 # Spring Web MVC
 
 
@@ -39,10 +40,27 @@
 - In spring web mvc, below components will be involved...
 
 1) DispatcherServlet : front controller/framework servlet
+- It is responsible to recieve request and send the response to client.
 
-2) HandlerMapper : To identify request handler (controller)
+- It is also called as framework servlet class.
 
-3) Controller : Request Handler (spring bean) - we have to develop
+2) HandlerMapper : 
+
+-  It is predefined class in spring web mvc
+
+- It is responsible to identify controller class to handle the request based on url-pattern and give controller class details to dispatcher servlet.
+
+3) Controller : 
+
+- Controllers are java classes which are used to handle the request (request processing).
+
+- DispatcherServlet will call controller class methods.
+
+- After processing request, controller method will return ModelAndView object to dispatcher servlet.
+
+	Model => It is a map to represent data in key-value pair
+
+	View => It represents view page name
 
 4) ModelAndView : Model represents data & view represents UI page.
 
@@ -51,7 +69,18 @@
 6) View : To render model data on view page.
 
 
+### Layered Architecture
 
+
+=> Develop application using multiple layers
+
+	a) Presentation Layer (UI)
+
+	b) Web Layer (Controllers)
+
+	c) Business Layer (services)
+
+	d) Data Access Layer (Repositories)
 
 
 ## Form Based Applications
@@ -146,6 +175,10 @@
 
 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> ce673f10ffb0266e446463d0947894d3634f386e
 
 ## Exception Handling in Boot web application	
 
@@ -425,6 +458,30 @@
 			spring.profiles.active=dev			
 
 
+## Email Sending using spring boot
+
+
+- To send emails using spring boot we have add 'mail-starter' dependency in pom.xml
+
+- We need to configure SMTP properties in application.properties file
+
+- Note: In SMTP props, we need to our gmail account credentials for authentication purpose.
+
+- Note: We need to generate "app password" for gmail for authentication.
+
+	URL To generate app pwd: https://g.co/kgs/f1ic3P9
+
+=> Spring boot provided JavaMailSender to send emails
+
+		- SimpleMailMessage (plain text)
+
+		- MimeMessage	(formats, attachments)
+
+
+
+
+
+
 
 ## Email Sending using spring boot
 
@@ -463,9 +520,6 @@
 11) Exception Handling in Web MVC
 12) Login & Registration app
 13) Product Store App (CRUD Ops)
-
-
-
 
 
 

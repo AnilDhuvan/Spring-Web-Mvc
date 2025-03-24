@@ -1,0 +1,9 @@
+spring.application.name=07_SB_MVC_Excel_Report
+
+
+# H2 Database configuration (for testing purposes)
+spring.datasource.url=jdbc:h2:mem:testdb
+spring.datasource.driverClassName=org.h2.Driver
+spring.datasource.username=anil
+spring.datasource.password=9928
+spring.jpa.hibernate.ddl-auto=update
