@@ -1,0 +1,63 @@
+package com.p1.controller;
+
+import java.io.ByteArrayOutputStream;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.itextpdf.kernel.pdf.PdfWriter;
+import com.itextpdf.layout.Document;
+import com.itextpdf.layout.element.Paragraph;
+import com.itextpdf.layout.element.Table;
+import com.p1.entity.Employee;
+import com.p1.repo.EmployeeRepository;
+
+@RestController
+public class PDFExportController {
+
+    @Autowired
+    private EmployeeRepository employeeRepository;  // Assume an Entity Class `Employee`
+
+    @GetMapping("/pdf-Report")
+    public ResponseEntity<byte[]> generatePDF() {
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        PdfWriter writer = new PdfWriter(out);
+        Document document = new Document(new com.itextpdf.kernel.pdf.PdfDocument(writer));
+
+        // Add a title
+        document.add(new Paragraph("Employee Data Report"));
+
+        // Fetch data from database
+        List<Employee> employees = employeeRepository.findAll();
+        
+        // Create a Table with 4 columns
+        Table table = new Table(new float[]{4, 4, 4,});
+        table.addHeaderCell("ID");
+        table.addHeaderCell("Name");
+        table.addHeaderCell("Department");
+        table.addHeaderCell("email");
+
+        // Add data to the table
+        for (Employee emp : employees) {
+            table.addCell(String.valueOf(emp.getId()));
+            table.addCell(emp.getName());
+            table.addCell(emp.getDepartment());
+            table.addCell(emp.getEmail());
+        }
+
+        document.add(table);
+        document.close();
+
+        // Send PDF as a downloadable response
+        return ResponseEntity.ok()
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=employee_data.pdf")
+                .contentType(MediaType.APPLICATION_PDF)
+                .body(out.toByteArray());
+    }
+}
+

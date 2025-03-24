@@ -100,18 +100,18 @@
 - Step-2 : Configure H2 datasource properties in application.properties file
 
 
-      spring.datasource.username=ashokit
-      spring.datasource.password=abc
-      spring.datasource.url=jdbc:h2:mem:sbms
+      spring.datasource.username=anil
+      spring.datasource.password=dev
+      spring.datasource.url=jdbc:h2:mem:Rollower
 
       spring.jpa.show-sql=true
 
-      server.port=8081
+      server.port=8080
 
 
 - Step-3 : Run the application and access h2-console in browser
 
-		URL : http://localhost:port/h2-console
+		URL : http://localhost:8080/h2-console
 
 	
 
@@ -144,26 +144,6 @@
 
 - Step-3 : Run the application and observe console.
 
-
-
-## Email Sending using spring boot
-
-
-- To send emails using spring boot we have add 'mail-starter' dependency in pom.xml
-
-- We need to configure SMTP properties in application.properties file
-
-- Note: In SMTP props, we need to our gmail account credentials for authentication purpose.
-
-- Note: We need to generate "app password" for gmail for authentication.
-
-	URL To generate app pwd: https://g.co/kgs/f1ic3P9
-
-=> Spring boot provided JavaMailSender to send emails
-
-		- SimpleMailMessage (plain text)
-
-		- MimeMessage	(formats, attachments)
 
 
 
@@ -443,6 +423,28 @@
 - We need to activate profile in main configuration file
 
 			spring.profiles.active=dev			
+
+
+
+## Email Sending using spring boot
+
+
+- To send emails using spring boot we have add 'mail-starter' dependency in pom.xml
+
+- We need to configure SMTP properties in application.properties file
+
+- Note: In SMTP props, we need to our gmail account credentials for authentication purpose.
+
+- Note: We need to generate "app password" for gmail for authentication.
+
+	URL To generate app pwd: https://g.co/kgs/f1ic3P9
+
+=> Spring boot provided JavaMailSender to send emails
+
+		- SimpleMailMessage (plain text)
+
+		- MimeMessage	(formats, attachments)
+
 
 
 

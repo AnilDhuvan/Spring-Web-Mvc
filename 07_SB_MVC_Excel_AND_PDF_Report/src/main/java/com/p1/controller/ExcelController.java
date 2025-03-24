@@ -1,0 +1,41 @@
+package com.p1.controller;
+
+import java.io.IOException;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.p1.service.ExcelService;
+
+import jakarta.servlet.http.HttpServletResponse;
+
+@RestController
+public class ExcelController {
+
+    private final ExcelService excelService;
+
+    public ExcelController(ExcelService excelService) {
+        this.excelService = excelService;
+    }
+    
+   
+    
+    @GetMapping("/export-excel")
+    public void exportToExcel(HttpServletResponse response) throws IOException {
+        excelService.exportExcel(response);
+    }
+
+    // Upload Excel file endpoint
+    @PostMapping("/uploadExcel")
+    public ResponseEntity<String> uploadExcelFile(@RequestParam("file") MultipartFile file) {
+        if (file.isEmpty()) {
+            return ResponseEntity.badRequest().body("Please upload a valid Excel file.");
+        }
+        excelService.saveExcelData(file);
+        return ResponseEntity.ok("Data saved successfully from Excel file.");
+    }
+}
